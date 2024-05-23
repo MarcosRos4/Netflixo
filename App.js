@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import {StyleSheet, View} from 'react-native';
-
-import Landing from './pages/Landing.js';
+import { PaperProvider } from 'react-native-paper'
+import Landing from './pages/queda/Landing.js';
 
 
 
@@ -9,11 +9,13 @@ export default function App() {
 
   return (
     
-    <View style={styles.container}>
+    <PaperProvider>
+      <View style={styles.container}>
       <Landing></Landing>
 
       </View>
     
+    </PaperProvider>
         
       
      
@@ -21,6 +23,7 @@ export default function App() {
     
   )
 }
+
 
 const styles = StyleSheet.create({
   container:{
