@@ -34,15 +34,18 @@ const styles = StyleSheet.create({
     },
     imgView: {
         alignItems:'flex-end',
-        flex: 0.5
+        flex: 0.5,
+        
     },
     imagem:{
-        userSelect:'none'
+        userSelect:'none',
+        width:'80%',
+        resizeMode:"contain"
     },
     titulo:{
         width:'80%',
         fontWeight:"bold",
-        textAlign:"justify",
+        textAlign:"left",
         userSelect:"none",
         marginBottom:15
     },

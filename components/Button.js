@@ -12,7 +12,8 @@ export default function Botao({ texto, icone, labelStyle, contentStyle }) {
             contentStyle={contentStyle}
             onPointerEnter={() => { setButtonColor('#c11119') }}
             onPointerLeave={() => { setButtonColor('red') }}
-            onPress={() => { setButtonColor('#99161d') }}
+            onPressIn={() => { setButtonColor('#99161d') }}
+            onPressOut={() => { setButtonColor('#e50914') }}
             icon={icone}>
             {texto}
         </Button>

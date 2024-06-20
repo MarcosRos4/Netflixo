@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
         flex: 0.5
     },
     imagem:{
-        userSelect:'none'
+        userSelect:'none',
+        resizeMode:'contain',
+        width:'80%',
     },
     titulo:{
         width:'80%',
