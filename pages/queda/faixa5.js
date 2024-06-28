@@ -1,139 +1,103 @@
-import { View, StyleSheet } from "react-native";
-import { List, Text } from "react-native-paper";
 import { useState } from "react";
+import { View } from "react-native";
+import { List, Text } from "react-native-paper";
 
 import CriarAssinatura from "../../components/CriarAssinatura";
 
-export default function Faixa5() {
+export default function Faixa5({estilo}){
     const [expanded, setExpanded] = useState(null)
     return (
-        <View style={styles.container}>
-            <Text style={styles.perguntas} variant="displayLarge">Perguntas frequentes</Text>
+        <View style={estilo.f5Container}>
+            <Text style={estilo.f5Title} variant="displayLarge">Perguntas frequentes</Text>
             <List.AccordionGroup
                 expandedId={expanded}
                 onAccordionPress={(e)=> e===expanded ? setExpanded(null) : setExpanded(e)}
             >
-                <List.Section style={styles.section}>
+                <List.Section style={estilo.f5Section}>
                     <List.Accordion
                         id="1"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'O que é a Netflix?'} >
                         <List.Item
                             title={''}
                             description={items.item1}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="2"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Quanto custa a Netflix'} >
                         <List.Item
                             title={''}
                             description={items.item2}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="3"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Onde posso assistir?'} >
                         <List.Item
                             title={''}
                             description={items.item3}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="4"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Como faço pra cancelar?'} >
                         <List.Item
                             title={''}
                             description={items.item4}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="5"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'O que eu posso assistir na Netflix?'} >
                         <List.Item
                             title={''}
                             description={items.item5}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="6"
-                        titleStyle={styles.acordion}
+                        titleStyle={estilo.f5Accordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'A Netflix é adequada para crianças?'} >
                         <List.Item
                             title={''}
                             description={items.item6}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
-                            descriptionStyle={styles.item}
+                            style={[estilo.f5Item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            descriptionStyle={estilo.f5Item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                 </List.Section>
             </List.AccordionGroup>
-            <CriarAssinatura />
+            <CriarAssinatura weight={8} />
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'black',
-        flexDirection: 'column',
-        paddingVertical: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    perguntas: {
-        width: '100%',
-        textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontWeight: '700',
-        marginBottom: 40,
-        userSelect:'none'
-    },
-    section: {
-        width: '80%',
-        gap: 10,
-        marginBottom: 50,
-    },
-    acordion: {
-        color: "#fff",
-        fontSize: 25,
-    },
-    item: {
-        backgroundColor: "#1c1b1f",
-        fontSize: 20,
-        color: 'white',
-        fontWeight: '600',
-        height: 170,
-        
-    }
-})
 
 const items = {
     item1: "A Netflix é um serviço de streaming que oferece uma ampla variedade de séries, filmes e documentários premiados em milhares de aparelhos conectados à internet. Você pode assistir a quantos filmes e séries quiser, quando e onde quiser – tudo por um preço mensal acessível. Aqui você sempre encontra novidades. A cada semana, adicionamos novas séries e filmes.",

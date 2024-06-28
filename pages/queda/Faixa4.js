@@ -1,58 +1,17 @@
-import { Image, StyleSheet, View } from "react-native";
+import { Image, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Faixa4() {
+export default function Faixa4({estilo}) {
     return (
-        <View style={styles.container}>
-            <View style={styles.textView}>
-                <Text variant='displayLarge' style={styles.titulo}>Baixe séries para assistir offline</Text>
-                <Text variant="headlineSmall" style={styles.mensagem}>
+        <View style={estilo.f4Container}>
+            <View style={estilo.f4TextContainer}>
+                <Text variant='displayLarge' style={estilo.f4Title}>Baixe séries para assistir offline</Text>
+                <Text variant="headlineSmall" style={estilo.f4Message}>
                 Assista em um avião, trem ou submarino...</Text>
             </View>
-            <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../../assets/faixa4.png')}></Image>
+            <View style={estilo.f4ImageContainer}>
+                <Image style={estilo.f4Image} source={require('../../assets/faixa4.png')}></Image>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-
-        flex: 1,
-        flexDirection: 'row-reverse',
-        backgroundColor: 'black',
-        justifyContent:'center',
-        alignItems:'center',
-        paddingVertical:100,
-        gap:30
-        
-    },
-    textView: {
-        alignItems:'flex-start',
-        justifyContent:'center',
-        flex: 0.5
-    },
-    imgView: {
-        alignItems:'flex-end',
-        flex: 0.5
-    },
-    imagem:{
-        userSelect:'none',
-        width:'80%',
-        resizeMode:"contain"
-    },
-    titulo:{
-        width:'80%',
-        fontWeight:"bold",
-        textAlign:"left",
-        userSelect:"none",
-        marginBottom:15,
-        lineHeight:80
-    },
-    mensagem:{
-        width:'80%',
-        textAlign:"justify",
-        userSelect:"none"
-    }
-})
