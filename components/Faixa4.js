@@ -10,7 +10,7 @@ export default function Faixa4() {
                 Assista em um avião, trem ou submarino...</Text>
             </View>
             <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../../assets/faixa4.png')}></Image>
+                <Image style={styles.imagem} source={require('../assets/faixa4.png')}></Image>
             </View>
         </View>
     )

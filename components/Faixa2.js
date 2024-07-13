@@ -1,15 +1,15 @@
 import { Image, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Faixa1({ params }) {
+export default function Faixa2() {
     return (
         <View style={styles.container}>
             <View style={styles.textView}>
-                <Text variant='displayLarge' style={styles.titulo}>Aproveite na TV</Text>
-                <Text variant="headlineSmall" style={styles.mensagem}>Assista em Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, aparelhos de Blu-ray e outros dispositivos.</Text>
+                <Text variant='displayLarge' style={styles.titulo}>Assista onde quiser</Text>
+                <Text variant="headlineSmall" style={styles.mensagem}>Assita a quantos filmes e séries quiser no celular, tablet, laptop e TV.</Text>
             </View>
             <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../../assets/faixa1tv.png')}></Image>
+                <Image style={styles.imagem} source={require('../assets/faixa2.png')}></Image>
             </View>
         </View>
     )
@@ -19,33 +19,33 @@ const styles = StyleSheet.create({
     container: {
 
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'row-reverse',
         backgroundColor: 'black',
         justifyContent:'center',
         alignItems:'center',
-        paddingVertical:140,
+        paddingVertical:100,
+        gap:30
         
     },
     textView: {
-        alignItems:'flex-end',
+        alignItems:'flex-start',
         justifyContent:'center',
-        
-        
         flex: 0.5
     },
     imgView: {
-        alignItems:'flex-start',
-        flex: 0.5
+        alignItems:'flex-end',
+        flex: 0.5,
+        
     },
     imagem:{
         userSelect:'none',
-        resizeMode:'contain',
         width:'80%',
+        resizeMode:"contain"
     },
     titulo:{
         width:'80%',
         fontWeight:"bold",
-        textAlign:"justify",
+        textAlign:"left",
         userSelect:"none",
         marginBottom:15
     },

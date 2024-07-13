@@ -23,12 +23,17 @@
       "package": "com.macros.Netflixo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output": "static",
+      "bundler": "metro"
     },
     "extra": {
       "eas": {
         "projectId": "b4cc366f-ca03-46c9-97f2-0093c4973106"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

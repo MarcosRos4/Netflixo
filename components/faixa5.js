@@ -2,7 +2,7 @@ import { View, StyleSheet } from "react-native";
 import { List, Text } from "react-native-paper";
 import { useState } from "react";
 
-import CriarAssinatura from "../../components/CriarAssinatura";
+import CriarAssinatura from "./CriarAssinatura";
 
 export default function Faixa5() {
     const [expanded, setExpanded] = useState(null)

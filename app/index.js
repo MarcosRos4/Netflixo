@@ -1,29 +1,33 @@
-import { View, StyleSheet, ImageBackground, Text, Image, ScrollView, useWindowDimensions, Dimensions} from "react-native";
-import { LinearGradient } from 'expo-linear-gradient'
-import CriarAssinatura from "../../components/CriarAssinatura";
+import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
+import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
+import CriarAssinatura from '../components/CriarAssinatura'
+import { PaperProvider } from 'react-native-paper';
+import Anuncio from "../components/Anuncio";
+import Botao from "../components/Button";
+import Faixa1 from "../components/Faixa1";
+import Faixa2 from '../components/Faixa2';
+import Faixa3 from "../components/Faixa3";
+import Faixa4 from "../components/Faixa4";
+import Faixa5 from "../components/faixa5";
 
-import Botao from "../../components/Button";
-import Faixa1 from "./Faixa1";
-import Faixa2 from './Faixa2'
-import Faixa3 from "./Faixa3";
-import Faixa4 from "./Faixa4";
-import Faixa5 from "./faixa5";
-import Anuncio from "../../components/Anuncio";
+export default function App() {
 
-export default function Landing({ props }) {
-    return (
+  return (
+    <PaperProvider>
+      <View style={stylesHorizontal.container}>
         <View style={stylesHorizontal.container}>
             <ScrollView>
                 <View style={{height:Dimensions.get('window').height * 0.8}}>
-                    <ImageBackground style={stylesHorizontal.bgImg} source={require('../../assets/landingbg.jpeg')} >
+                    <ImageBackground style={stylesHorizontal.bgImg} source={require('../assets/landingbg.jpeg')} >
                         <LinearGradient colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.9)']} stylesHorizontal={stylesHorizontal.gradient}>
                             <View style={stylesHorizontal.header}>
                                 <View style={stylesHorizontal.netflix}>
-                                    <Image style={{tintColor:'#e50914'}} source={require('../../assets/netflix.png')}></Image>
+                                    <Image style={{tintColor:'#e50914'}} source={require('../assets/netflix.png')}></Image>
                                 </View>
                                 <View style={stylesHorizontal.centro} />
                                     <View style={stylesHorizontal.direita}>
-                                        <Image style={{borderColor:'gray', borderWidth:1, borderRadius:2}} source={require('../../assets/idiomas.png')}></Image>
+                                        <Image style={{borderColor:'gray', borderWidth:1, borderRadius:2}} source={require('../assets/idiomas.png')}></Image>
                                         <Botao
                                             labelStyle={stylesHorizontal.buttonLabel}
                                             contentStyle={stylesHorizontal.button}
@@ -51,9 +55,11 @@ export default function Landing({ props }) {
                 </View>
             </ScrollView>
         </View>
-    )
+        <StatusBar />
+      </View>
+    </PaperProvider>
+  )
 }
-
 
 const stylesHorizontal = StyleSheet.create({
 
@@ -121,5 +127,3 @@ const stylesHorizontal = StyleSheet.create({
         overflow:'visible'
     }
 })
-
-const stylesVertical = StyleSheet.create({})

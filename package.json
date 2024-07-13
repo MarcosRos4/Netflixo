@@ -1,12 +1,13 @@
 {
   "name": "netflixo",
   "version": "1.0.0",
-  "main": "expo/AppEntry.js",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "vercel-build": "expo export -p web"
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
@@ -30,7 +31,10 @@
     "react-native-screens": "3.31.1",
     "react-native-vector-icons": "^10.1.0",
     "react-native-view-shot": "3.8.0",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "~0.19.10",
+    "expo-router": "~3.5.17",
+    "expo-linking": "~6.3.1",
+    "expo-constants": "~16.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
