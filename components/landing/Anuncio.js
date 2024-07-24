@@ -1,12 +1,10 @@
 import { Text, StyleSheet, View, Image, ImageBackground } from "react-native"
 
-
-
 export default function Anuncio(params) {
     return (
         <View style={styles.container}>
-            <ImageBackground style={styles.imgBg} source={require('../assets/anuncio.png')}>
-                <Image style={styles.imagem} source={require('../assets/pipoca.png')} />
+            <ImageBackground style={styles.imgBg} source={require('../../assets/anuncio.png')}>
+                <Image style={styles.imagem} source={require('../../assets/pipoca.png')} />
                 <View style={styles.textosV}>
                     <Text style={styles.titulo}>A Netflix que você adora por apenas R$ 18,90.</Text>
                     <Text style={styles.venda}>Assine o plano Padrão com anúncios.</Text>
@@ -31,9 +29,9 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         gap:20,
-        paddingLeft:'35%',
+        justifyContent:'center',
         paddingTop:15,
-        resizeMode:'contain',
+        resizeMode:'cover',
         width:'100%'
     },
     imagem:{

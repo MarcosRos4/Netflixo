@@ -10,7 +10,7 @@ export default function Faixa3() {
                 Deixe as crianças se aventurarem com seus personagens favoritos em um espaço feito só pra eles, sem pagar mais por isso.</Text>
             </View>
             <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../assets/faixa3.png')}></Image>
+                <Image style={styles.imagem} source={require('../../assets/faixa3.png')}></Image>
             </View>
         </View>
     )
