@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, useWindowDimensions } from "react-native";
+import {Link} from 'expo-router'
 import Profile from "../components/profiles/profile";
 import BotaoPF from "../components/profiles/buttonpf";
 export default function Profiles() {
@@ -12,10 +13,10 @@ export default function Profiles() {
         <View style={styles.container}>
             <Text style={{color:'white', fontSize:width * 0.04 }}>Quem está assistindo?</Text>
             <View style={styles.profilesContainer}>
-                <Profile width={width} pfp={pfp1} name={'Shork'}></Profile>
-                <Profile width={width} pfp={pfp2} name={'Penpuin'}></Profile>
-                <Profile width={width} pfp={pfp3} name={'Carm'}></Profile>
-                <Profile width={width} pfp={pfp4} name={'hmm'}></Profile>
+                <Link href={'/browse'}><Profile width={width} pfp={pfp1} name={'Shork'}/></Link>
+                <Link href={'/browse'}><Profile width={width} pfp={pfp2} name={'Penpuin'}/></Link>
+                <Link href={'/browse'}><Profile width={width} pfp={pfp3} name={'Carm'}/></Link>
+                <Link href={'/browse'}><Profile width={width} pfp={pfp4} name={'hmm'}/></Link>
                 <Profile width={width} pfp={pfp5} name={'Adicionar Perfil'}></Profile>
             </View>
             <View>

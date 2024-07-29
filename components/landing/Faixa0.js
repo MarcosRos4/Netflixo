@@ -9,7 +9,7 @@ export default function Faixa0({}) {
     return(
         <View style={{height: windowDimensions.height * 0.8}}>
                     <ImageBackground style={stylesHorizontal.bgImg} source={require('../../assets/landingbg.jpeg')} >
-                        <LinearGradient colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.9)']} stylesHorizontal={stylesHorizontal.gradient}>
+                        <LinearGradient colors={['rgba(0,0,0,0.9)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.9)']} >
                             
                             <View style={stylesHorizontal.header}>
                                 <View style={stylesHorizontal.netflix}>
@@ -50,9 +50,6 @@ const stylesHorizontal = StyleSheet.create({
     },
     bgImg: {
         height: "100%"
-    },
-    gradient: {
-        flexDirection: 'column'
     },
     header: {
         flex: 1,

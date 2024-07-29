@@ -24,7 +24,7 @@ export default function Profile({pfp, name, width}) {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#141414',
+        //backgroundColor:'#141414',
         justifyContent:'center',
         alignItems:'center',
         flexDirection:'column',
