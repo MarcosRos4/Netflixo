@@ -1,13 +1,18 @@
-import { ImageBackground, StyleSheet, View, ScrollView } from "react-native";
+import { ImageBackground, StyleSheet, View, ScrollView, FlatList, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Profile from "../components/profiles/profile";
+import { useState, useEffect } from "react";
+import Filme from "../components/browse/filme";
+import MovieFlatList from "../components/browse/movieFlatList";
+
 
 export default function Browse() {
     // container principal
     // cabeçalho
     // faixa 1 com trailer de alguma coisa e o primeiro carrossel de conteudo
     // flatlist com todos os outros carrosseis
-    const pfp = require('../assets/shorkpfp.png')
+
+
+   
     return(
         
         <ScrollView style={styles.container}>
@@ -19,20 +24,12 @@ export default function Browse() {
             
             <ImageBackground resizeMode="stretch" source={require('../assets/toninhotornado.png')} style={styles.imageBg}>
             </ImageBackground>
-            <View style={styles.flatList}>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
-                <Profile width={1920} name={'gerson'} pfp={pfp}></Profile>
+            <MovieFlatList/>
+            
 
-            </View>
+            <Text>
+            créditos a tmdbapi
+            </Text>
         
         </ScrollView>
     )
@@ -40,9 +37,8 @@ export default function Browse() {
 
 const  styles = StyleSheet.create({
     container:{
-        backgroundColor:'orange',
-        flex:1
-
+        backgroundColor:'#141414',
+        flex:1,
     },
     header:{
         height:200,
@@ -54,11 +50,5 @@ const  styles = StyleSheet.create({
         top:-200,
         zIndex:0,
         width:'100%'
-    },
-    flatList:{       
-        
-        
-        height:600,
-        top:-1080*0.2
     }
 })
