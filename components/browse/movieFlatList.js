@@ -1,22 +1,25 @@
 import { StyleSheet, View, FlatList, Text, Pressable } from "react-native";
 import { useState, useEffect, useRef } from "react";
-require('dotenv').config
+import { AUTH } from '@env'
+
 import Feather from '@expo/vector-icons/Feather';
 import Filme from "./filme";
 
-export default function MovieFlatList({}) {
+export default function MovieFlatList({genre, id}) {
 
-    const url = 'https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&page=1&region=br';
+
+    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=pt-BR&page=1&region=BR&sort_by=popularity.desc&with_genres=${id}`;
     const options = {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: process.env.AUTH
+            Authorization: AUTH
         }
     };
 
-    const [movies, setMovies] = useState([{bacdrop_path:"/tKi5HYDSuxP4I26fxyF2UVvAtLa.jpg"}])   
+    const [movies, setMovies] = useState([{}])   
     const [index, setIndex] = useState(0)
+    
     const [showButton, setShowButton] = useState(true)
     const flatListReference = useRef(null)
 
@@ -37,7 +40,7 @@ export default function MovieFlatList({}) {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.title} >TOP RATED</Text>
+            <Text style={styles.title} >{genre}</Text>
             <View
             onPointerEnter={()=>setShowButton(false)}
             onPointerLeave={()=>setShowButton(true)}
@@ -85,7 +88,6 @@ export default function MovieFlatList({}) {
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
-        top:-200,
         marginVertical:30
     },
     title:{

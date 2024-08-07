@@ -10,7 +10,7 @@ export default function Filme({item}) {
 
 const styles = StyleSheet.create({
     imgBg:{
-        height:170,
+        height:180,
         width:300,
         borderRadius:5
         
