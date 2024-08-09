@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { AUTH } from '@env'
 
 import Feather from '@expo/vector-icons/Feather';
-import Filme from "./filme";
+import Movie from "./movie";
 
 export default function MovieFlatList({genre, id}) {
 
@@ -34,7 +34,7 @@ export default function MovieFlatList({genre, id}) {
     useEffect(()=>{
         fetch(url, options)
         .then(res => res.json())
-        .then(json => {setMovies(json.results)})
+        .then(json => {setMovies(json.results), console.log(json)})
         .catch(err => console.error('error:' + err));
     }, [])
 
@@ -54,7 +54,7 @@ export default function MovieFlatList({genre, id}) {
                 showsHorizontalScrollIndicator={false}
                 style={styles.flatList}
                 data={movies}
-                renderItem={({item})=> <Filme item={item}/>}
+                renderItem={({item})=> <Movie movieData={item}/>}
                 />
     
                 <Pressable
