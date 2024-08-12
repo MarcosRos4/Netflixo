@@ -1,37 +1,14 @@
+import { useEffect } from "react"
 import { View, Text, Image, StyleSheet, ImageBackground } from "react-native"
-import { useState, useEffect } from "react";
-import { AUTH } from '@env'
 
-export default function MovieModal({id, popularity, release_date, title, vote_average, genre_ids}) {
-    const url = `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=pt`;
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: AUTH
-        }
-    };
-    const teste = ()=>{
-        fetch(url, options)
-        .then(res => res.json())
-        .then(json => {return json.backdrops})
-        .catch(err => console.error('error:' + err))
-    }
 
-    const [movieImages, setMovieImages] = useState(teste)
+export default function MovieModal({id, popularity, release_date, title, vote_average, genre_ids, images}) {
 
-    useEffect(()=>{
-        fetch(url, options)
-        .then(res => res.json())
-        .then(json => {setMovieImages(json.backdrops), console.log(movieImages)})
-        .catch(err => console.error('error:' + err));
-        
-    }, [id])
-
+    useEffect(()=>{console.log(images)},[])
     return(
         <>
         <View style={styles.container}>
-            <ImageBackground style={styles.image} resizeMode="stretch" source={`https://image.tmdb.org/t/p/w500/sUe6OYgbWrnYpugTvScSUcFVuy4.jpg`}/>
+            <ImageBackground style={styles.image} resizeMode="stretch" source={`https://image.tmdb.org/t/p/w500/wRSLdSupaU9McDbCFVdZw0gzhrU.jpg`}/>
             <View style={styles.content}>
                 <Text
                 /*

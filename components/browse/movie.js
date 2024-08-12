@@ -1,17 +1,29 @@
 import { View, Text, Image, StyleSheet, Modal, ImageBackground, Pressable } from "react-native";
 import { useState, useRef } from "react";
+import { AUTH } from '@env'
 import MovieModal from "./modal";
 
 export default function Movie({movieData}) {
 
     const [modalVisible, setModalVisible] = useState(false)
     const [cords, setCords] = useState({x:0, y:0})
+    const [movieImages, setMovieImages] = useState([{}])
     const ref = useRef()
+
     const getcords = ()=>{
         ref.current.measureInWindow(
             (fx, fy, width, height) => setCords({x:fx + width/2, y:fy + height/2})
         )
     }
+
+    const url = `https://api.themoviedb.org/3/movie/${movieData.id}/images?include_image_language=en`;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: AUTH
+        }
+    };
 
 
     return(
@@ -28,8 +40,15 @@ export default function Movie({movieData}) {
             visible={modalVisible}
             animationType="fade"
             onRequestClose={()=>setModalVisible(!modalVisible)}
-            
-            >
+            onShow={()=>{
+                fetch(url, options)
+                .then(res => res.json())
+                .then(json => {
+                    setMovieImages(json.backdrops), console.log(json)
+                })
+                .catch(err => console.error('error:' + err));
+                
+            }}>
                 <View
                 
                 onPointerLeave={()=>{setModalVisible(!modalVisible)}}
@@ -44,6 +63,7 @@ export default function Movie({movieData}) {
                 release_date={movieData.release_date}
                 title={movieData.title}
                 vote_average={movieData.vote_average}
+                images={movieImages}
                 />
                 </View>
                 

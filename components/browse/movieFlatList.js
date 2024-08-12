@@ -34,7 +34,7 @@ export default function MovieFlatList({genre, id}) {
     useEffect(()=>{
         fetch(url, options)
         .then(res => res.json())
-        .then(json => {setMovies(json.results), console.log(json)})
+        .then(json => {setMovies(json.results)})
         .catch(err => console.error('error:' + err));
     }, [])
 
