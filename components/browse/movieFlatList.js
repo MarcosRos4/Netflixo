@@ -7,7 +7,6 @@ import Movie from "./movie";
 
 export default function MovieFlatList({genre, id}) {
 
-
     const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=pt-BR&page=1&region=BR&sort_by=popularity.desc&with_genres=${id}`;
     const options = {
         method: 'GET',
