@@ -6,7 +6,6 @@ export default function WatchProviders({watchProviders}) {
         <Text style={{color:'white'}}>Disponível em:</Text>
         <View style={{flex:1, flexDirection:'row',  gap:10,}}>
             {watchProviders?.map((watchProviders, index)=>{
-                console.log(watchProviders)
                 return(
                     <>
                     <Image key={`${index}-${watchProviders.provider_id}`} style={styles.image} source={`https://image.tmdb.org/t/p/w500${watchProviders.logo_path}`}/>

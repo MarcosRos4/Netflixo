@@ -1,14 +1,23 @@
 import { StyleSheet, View, Text, useWindowDimensions } from "react-native";
-import {Link} from 'expo-router'
+import { Link } from 'expo-router'
+import { useEffect, useState } from "react";
 import Profile from "../components/profiles/profile";
 import BotaoPF from "../components/profiles/buttonpf";
 export default function Profiles() {
-    let pfp1 = require('../assets/shorkpfp.png')
-    let pfp2 = require('../assets/penguinpfp.png')
-    let pfp3 = require('../assets/hatpfp.png')
-    let pfp4 = require('../assets/heropfp.png')
-    let pfp5 = require('../assets/addpfp.png')
-    let width = useWindowDimensions().width
+    const pfp1 = require('../assets/shorkpfp.png')
+    const pfp2 = require('../assets/penguinpfp.png')
+    const pfp3 = require('../assets/hatpfp.png')
+    const pfp4 = require('../assets/heropfp.png')
+    const pfp5 = require('../assets/addpfp.png')
+
+    const [width, setWidth] = useState(1920)
+    let newWidth = useWindowDimensions().width
+    
+    useEffect(()=>{
+        setWidth(newWidth)
+    },
+    [newWidth])
+
     return (
         <View style={styles.container}>
             <Text style={{color:'white', fontSize:width * 0.04 }}>Quem está assistindo?</Text>

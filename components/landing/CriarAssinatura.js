@@ -1,13 +1,20 @@
 import { Text, StyleSheet, TextInput, View, useWindowDimensions } from "react-native"
+import { useState, useEffect } from "react"
 import Botao from "./Button"
 
-
-
 export default function CriarAssinatura({ props }) {
-    let windowDimensions = useWindowDimensions()
+    
+    const [width, setWidth] = useState(1920)
+    let newWidth = useWindowDimensions().width
+    
+    useEffect(()=>{
+        setWidth(newWidth)
+    },
+    [newWidth])
+    
     return (
         <View style={{flex:1}}>
-            <Text style={[styles.texto, {fontSize: windowDimensions.width * 0.01 + 10}]}
+            <Text style={[styles.texto, {fontSize: width * 0.01 + 10}]}
             >Quer assistir? Informe seu email para criar ou reiniciar sua assinatura.</Text>
             <View style={styles.container}>
                 <TextInput maxLength={50} style={styles.imput} placeholder="Email" />

@@ -35,7 +35,7 @@ export default function MovieSelected({movieData, backdrops, closeMovieSelect}) 
         fetch(urlWatchProviders, options)
         .then(res => res.json())
         .then(json => {setWatchProviders(json.results.BR.flatrate)})
-        .catch(err => console.error('error:' + err))
+        .catch(err => console.error('error: nada poggers' + err))
     }, [])
 
      useEffect(()=>{
