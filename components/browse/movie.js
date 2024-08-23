@@ -1,14 +1,12 @@
-import { View, Text, Image, StyleSheet, Modal, ImageBackground, Pressable } from "react-native";
+import { View, Image, StyleSheet, Modal } from "react-native";
 import { useState, useRef } from "react";
 import { AUTH } from '@env'
-import MovieModal from "./modal";
+import MovieModal from "./movieModal";
+import MovieSelected from "./movieSelect";
 
-export default function Movie({movieData}) {
+export default function Movie({movieData, pointerEvents}) {
 
-    const [modalVisible, setModalVisible] = useState(false)
     const [cords, setCords] = useState({x:0, y:0})
-    const [backdrops, setBackdrops] = useState([{}])
-    const [logos, setLogos] = useState([{}])
     const ref = useRef()
 
     const getcords = ()=>{
@@ -25,8 +23,9 @@ export default function Movie({movieData}) {
             accept: 'application/json',
             Authorization: AUTH
         }
-    };
-
+    }
+    
+    const [backdrops, setBackdrops] = useState([{}])
     const fetchImages = ()=>{
         fetch(url, options)
         .then(res => res.json())
@@ -34,39 +33,73 @@ export default function Movie({movieData}) {
             json.backdrops.length === 0 ? setBackdrops([{'file_path':movieData.backdrop_path}]) : setBackdrops(json.backdrops)
             
         })
-        .catch(err => console.error('error:' + err));}
+        .catch(err => console.error('error:' + err))
+    }
 
+    const [modalVisible, setModalVisible] = useState(false)
+    
+    const timerRef = useRef(null);
+
+    const handlePointerEnter = () => {
+      timerRef.current = setTimeout(() => {
+        setModalVisible(true)
+        fetchImages()
+      }, 600); 
+    }
+
+    const handlePointerLeave = () => !modalVisible ? clearTimeout(timerRef.current) : null
+
+    const [isMovieSelected, setIsMovieSelected] = useState(false)
+
+    function openMovieSelect() {
+        setModalVisible(false)
+        setIsMovieSelected(true)
+        
+    }
+
+    function closeMovieSelect() {
+        setModalVisible(false)
+        setIsMovieSelected(false)
+    }
 
     return(
     <>
         <View
         ref={ref}
-        onPointerEnter={()=>{setModalVisible(!modalVisible), getcords(), fetchImages()}}>
+        pointerEvents={pointerEvents}
+        onPointerEnter={()=>{handlePointerEnter(), getcords()}}
+        onPointerLeave={handlePointerLeave}>
             <Image style={styles.imgBg} source={`https://image.tmdb.org/t/p/w500${movieData.backdrop_path}`} ></Image>
         </View>
+
+        { modalVisible && <View>
         <Modal
         transparent={true}
         visible={modalVisible}
         animationType="fade"
-        onRequestClose={()=>setModalVisible(!modalVisible)}
-        >
-            <View
-            onPointerLeave={()=>{setModalVisible(!modalVisible)}}
-            style={[styles.modal,{top:cords.y-200, left:cords.x-200}]}>
-                <MovieModal
-                id={movieData.id}
-                genre_ids={movieData.genre_ids}
-                popularity={movieData.popularity}
-                release_date={movieData.release_date}
-                title={movieData.title}
-                vote_average={movieData.vote_average}
-                backdrops={backdrops}
-                
-                />
-            </View>
-                
+        onRequestClose={()=>setModalVisible(false)}>
+           
+            {
+                isMovieSelected ?
+
+                <MovieSelected
+                closeMovieSelect={closeMovieSelect}
+                movieData={movieData} 
+                backdrops={backdrops}/> : 
+
+                <View 
+                onPointerLeave={()=>setModalVisible(false)}
+                style={[styles.card,{top:cords.y-200, left:cords.x-200}]}>
+                    <MovieModal
+                    openMovieSelect={openMovieSelect}
+                    movieData={movieData}
+                    backdrops={backdrops}/>
+                </View>
+            }
+
         </Modal>
-        
+        </View>}
+
     </>
     )
 }
@@ -76,11 +109,10 @@ const styles = StyleSheet.create({
         height:180,
         width:300,
         borderRadius:5
-        
     },
-    modal:{
+    card:{
         backgroundColor:'#181818',
         width:400, height:400,
         borderRadius:5
-        }
+    },
 })

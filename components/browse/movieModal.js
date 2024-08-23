@@ -1,7 +1,8 @@
-import { View, Text, Image, StyleSheet, ImageBackground } from "react-native"
-import Ratings from "./rating";
+import { View, Text, StyleSheet, ImageBackground, Pressable } from "react-native"
+import Ratings from "./ratings";
 
-export default function MovieModal({id, popularity, release_date, title, vote_average, genre_ids, backdrops, logos}) {
+
+export default function MovieModal({openMovieSelect, movieData, backdrops}) {
     
     const genres = [
         {"id": 28,"name": "Ação"},
@@ -25,29 +26,31 @@ export default function MovieModal({id, popularity, release_date, title, vote_av
         {"id": 37,"name": "Faroeste"} 
     ]
 
-
-    const genreNames = genre_ids.map(id => {
-        console.log(logos)
+    const genreNames = movieData.genre_ids.map(id => {
         const genre = genres.find(g => g.id === id);
         return genre ? ' ' + genre.name  : null;
     }).filter(name => name !== null);
     
     return(
         <>
-        <View style={styles.container}>
-            <ImageBackground style={styles.imageBg} resizeMode="stretch" source={`https://image.tmdb.org/t/p/w500${backdrops[0].file_path}`}/>
-            <View style={styles.content}>
-                <View style={styles.textContainer}>
-                    <Text style={styles.text}>
-                    {`${title}  ${release_date.split('-')[0]}`}
-                    </Text>
-                </View>
-                <Ratings vote_average={vote_average} />
-                <View style={styles.textContainer}>
-                <Text style={styles.text}>{genreNames}</Text>
+        <Pressable
+        onPress={openMovieSelect}
+        style={{flex:1}}>
+            <View style={styles.container}>
+                <ImageBackground style={styles.imageBg} resizeMode="stretch" source={`https://image.tmdb.org/t/p/original${backdrops[0].file_path}`}/>
+                <View style={styles.content}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text}>
+                        {`${movieData.title}  (${movieData.release_date.split('-')[0]})`}
+                        </Text>
+                    </View>
+                    <Ratings id={"card"} vote_average={movieData.vote_average} />
+                    <View style={styles.textContainer}>
+                    <Text style={styles.text}>{genreNames}</Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        </Pressable>
         </>
     )
 }

@@ -45,6 +45,7 @@ export default function Browse() {
             <FlatList
                 style={{top:-400}}
                 data={data}
+                showsVerticalScrollIndicator={false}
                 renderItem={({item}) => <MovieFlatList genre={item.name} id={item.id} />}
             />
             

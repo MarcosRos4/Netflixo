@@ -1,9 +1,9 @@
-import { StyleSheet, View, FlatList, Text, Pressable } from "react-native";
-import { useState, useEffect, useRef } from "react";
+import { StyleSheet, View, FlatList, Text, Pressable } from "react-native"
+import { useState, useEffect, useRef } from "react"
 import { AUTH } from '@env'
 
-import Feather from '@expo/vector-icons/Feather';
-import Movie from "./movie";
+import Feather from '@expo/vector-icons/Feather'
+import Movie from "./movie"
 
 export default function MovieFlatList({genre, id}) {
 
@@ -14,14 +14,21 @@ export default function MovieFlatList({genre, id}) {
             accept: 'application/json',
             Authorization: AUTH
         }
-    };
+    }
+    const [movies, setMovies] = useState([{}]) 
 
-    const [movies, setMovies] = useState([{}])   
-    const [index, setIndex] = useState(0)
-    
+    useEffect(()=>{
+        fetch(url, options)
+        .then(res => res.json())
+        .then(json => {setMovies(json.results)})
+        .catch(err => console.error('error:' + err))
+    }, [])
+
+  
+    const [index, setIndex] = useState(0)    
     const [showButton, setShowButton] = useState(true)
     const flatListReference = useRef(null)
-
+    
     useEffect(()=>{
         flatListReference.current.scrollToIndex({
             index:index,
@@ -30,12 +37,34 @@ export default function MovieFlatList({genre, id}) {
         })
     }, [index])
 
-    useEffect(()=>{
-        fetch(url, options)
-        .then(res => res.json())
-        .then(json => {setMovies(json.results)})
-        .catch(err => console.error('error:' + err));
-    }, [])
+    const viewabilityConfig = useRef({
+        itemVisiblePercentThreshold: 70
+    })
+    const [visibleItems, setVisibleItems] = useState([])
+    
+    const onViewableItemsChanged = useRef(({ viewableItems }) => {
+        setVisibleItems(viewableItems.map(item => item.key))
+    })
+
+    function handleBrowseRight(){
+        index >= movies.length-visibleItems.length ?
+        setIndex(movies.length-1):
+        setIndex(index + visibleItems.length)
+    }
+
+    function handleBrowseLeft() {
+        index < visibleItems.length ? setIndex(0) : setIndex(index-visibleItems.length)
+    }
+    
+
+    const renderItem = ({item}) => {
+        const isVisible = visibleItems.includes(item.id)
+        return(
+            <Movie movieData={item} pointerEvents={isVisible ? 'auto' : 'none'}/>
+        )
+    }
+
+
 
     return(
         <View style={styles.container}>
@@ -44,18 +73,7 @@ export default function MovieFlatList({genre, id}) {
             onPointerEnter={()=>setShowButton(false)}
             onPointerLeave={()=>setShowButton(true)}
             style={styles.wrapper}>
-                <FlatList
-                initialScrollIndex={index}
-                ref={flatListReference}
-                ItemSeparatorComponent={<View style={{width:10}} />}
-                contentContainerStyle={{padding:10}}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={styles.flatList}
-                data={movies}
-                renderItem={({item})=> <Movie movieData={item}/>}
-                />
-    
+
                 <Pressable
                 style={
                     ()=> showButton===false ?
@@ -63,9 +81,21 @@ export default function MovieFlatList({genre, id}) {
                     [styles.pressable, {opacity:0}]
                 }
                 disabled={showButton}
-                onPress={()=> index < 4 ? setIndex(0) : setIndex(index-4)}>
+                onPress={handleBrowseLeft}>
                     <Feather name="chevron-left" size={24} color={'white'}/>
                 </Pressable>
+
+                <FlatList
+                initialScrollIndex={index}
+                ref={flatListReference}
+                ItemSeparatorComponent={<View style={{width:10}} />}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                onViewableItemsChanged={onViewableItemsChanged.current}
+                viewabilityConfig={viewabilityConfig.current}
+                data={movies}
+                renderItem={renderItem}
+                />
             
                 <Pressable
                 style={
@@ -75,7 +105,7 @@ export default function MovieFlatList({genre, id}) {
                     [styles.pressable, {opacity:0, right:0}]
                 }
                 disabled={showButton}
-                onPress={()=> index > movies.length-5 ? setIndex(movies.length-1) : setIndex(index+4)}>
+                onPress={handleBrowseRight}>
                     <Feather  name="chevron-right" size={24} color={'white'} />
                 </Pressable>
             </View>
@@ -92,17 +122,19 @@ const styles = StyleSheet.create({
     title:{
         color:'white',
         textAlign:'left',
-        width:'95%'
+        width:'100%',
+        paddingHorizontal:80
     },
     wrapper:{
-        width:'95%',        
+        width:'100%',
+        flexDirection:'row'
     }, 
     pressable:{
         width:80,
-        position:'absolute',
+        
         height:'100%',
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#141414',        
+        backgroundColor:'#000000',        
     }
 })

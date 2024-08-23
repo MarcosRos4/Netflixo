@@ -2,7 +2,7 @@ import { View, Text, StyleSheet} from "react-native"
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import React from "react";
 
-export default function Ratings({vote_average}) {
+export default function Ratings({vote_average, id}) {
 
     const countStars = (vote_average)=>{
         const rating = vote_average / 2
@@ -20,7 +20,7 @@ export default function Ratings({vote_average}) {
                 <FontAwesome name="star-o" size={24} color="yellow"/>
             ][index]
             return Array.from({length: count}, (_, i)=>
-                React.cloneElement(StarComponent, {key: `${index}-${i}`})
+                React.cloneElement(StarComponent, {key: `${index}-${i}-${id}`})
             )
         })
         return components.flat()
@@ -30,7 +30,7 @@ export default function Ratings({vote_average}) {
     return(
         <View style={styles.container}>
             {renderStars(countStars(vote_average))}
-            <Text style={{color:'white'}}>{vote_average.toFixed(1)}</Text>
+            <Text style={{color:'white'}}>{vote_average?.toFixed(1)}</Text>
         </View>
     )
 }
