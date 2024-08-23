@@ -15,14 +15,8 @@ export default function App() {
         <View style={{flex:1}}>
             <ScrollView>
                 <Faixa0/>
-                <Anuncio/>
-                <Faixa1/>
-                <View style={{ gap: 7, flexDirection: 'column', backgroundColor: '#232323', borderTopColor: '#232323', borderTopWidth: 7 }}>
-                    <Faixa2/>
-                    <Faixa3/>
-                    <Faixa4/>
-                    <Faixa5/>
-                </View>
+                
+                
             </ScrollView>
         </View>
       </View>
