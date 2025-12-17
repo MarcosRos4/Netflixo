@@ -9,7 +9,7 @@ export default function Faixa2() {
                 <Text variant="headlineSmall" style={styles.mensagem}>Assita a quantos filmes e séries quiser no celular, tablet, laptop e TV.</Text>
             </View>
             <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../../assets/faixa2.png')}></Image>
+                <Image resizeMode="contain" style={styles.imagem} source={require('../../assets/faixa2.png')}></Image>
             </View>
         </View>
     )
@@ -40,18 +40,19 @@ const styles = StyleSheet.create({
     imagem:{
         userSelect:'none',
         width:'80%',
-        resizeMode:"contain"
     },
     titulo:{
         width:'80%',
         fontWeight:"bold",
         textAlign:"left",
         userSelect:"none",
-        marginBottom:15
+        marginBottom:15,
+        color:"#e9e6e6ff"
     },
     mensagem:{
         width:'80%',
         textAlign:"justify",
-        userSelect:"none"
+        userSelect:"none",
+        color:"#e9e6e6ff"
     }
 })

@@ -16,20 +16,22 @@ export default function Faixa5() {
                 <List.Section style={styles.section}>
                     <List.Accordion
                         id="1"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'O que é a Netflix?'} >
                         <List.Item
                             title={''}
                             description={items.item1}
-                            style={[styles.item, {borderTopColor:'#2d2d2d', borderTopWidth:2}]}
+                            style={[styles.item, {  borderTopColor:'#2d2d2d', borderTopWidth:2}]}
                             descriptionStyle={styles.item}
                             contentStyle={{ height: 130 }}
                         ></List.Item>
                     </List.Accordion>
                     <List.Accordion
                         id="2"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Quanto custa a Netflix'} >
                         <List.Item
@@ -42,7 +44,8 @@ export default function Faixa5() {
                     </List.Accordion>
                     <List.Accordion
                         id="3"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Onde posso assistir?'} >
                         <List.Item
@@ -55,7 +58,8 @@ export default function Faixa5() {
                     </List.Accordion>
                     <List.Accordion
                         id="4"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'Como faço pra cancelar?'} >
                         <List.Item
@@ -68,7 +72,8 @@ export default function Faixa5() {
                     </List.Accordion>
                     <List.Accordion
                         id="5"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'O que eu posso assistir na Netflix?'} >
                         <List.Item
@@ -81,7 +86,8 @@ export default function Faixa5() {
                     </List.Accordion>
                     <List.Accordion
                         id="6"
-                        titleStyle={styles.acordion}
+                        titleStyle={styles.acordionTitle}
+                        style={styles.acordion}
                         right={props => <List.Icon icon={'plus'} />}
                         title={'A Netflix é adequada para crianças?'} >
                         <List.Item
@@ -114,21 +120,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: '700',
         marginBottom: 40,
-        userSelect:'none'
+        userSelect:'none',
+        color:"#e9e6e6ff"
     },
     section: {
         width: '80%',
         gap: 10,
         marginBottom: 50,
     },
-    acordion: {
-        color: "#fff",
+    acordion:{
+
+        backgroundColor:"#1c1b1f",
+    },
+    acordionTitle: {
+        color:"#e9e6e6ff",
         fontSize: 25,
+        padding:0
     },
     item: {
-        backgroundColor: "#1c1b1f",
+        color:"#b8b8b8ff",
+        backgroundColor:"#1c1b1f",
         fontSize: 20,
-        color: 'white',
         fontWeight: '600',
         height: 170,
         

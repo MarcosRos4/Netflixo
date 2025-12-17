@@ -12,7 +12,7 @@ export default function MovieFlatList({genre, id}) {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: AUTH
+            Bearer: AUTH
         }
     }
     const [movies, setMovies] = useState([{}]) 

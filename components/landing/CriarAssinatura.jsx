@@ -1,6 +1,7 @@
 import { Text, StyleSheet, TextInput, View, useWindowDimensions } from "react-native"
 import { useState, useEffect } from "react"
 import Botao from "./Button"
+import { Link } from 'expo-router';
 
 export default function CriarAssinatura({ props }) {
     
@@ -18,12 +19,13 @@ export default function CriarAssinatura({ props }) {
             >Quer assistir? Informe seu email para criar ou reiniciar sua assinatura.</Text>
             <View style={styles.container}>
                 <TextInput maxLength={50} style={styles.imput} placeholder="Email" />
+                <Link href={'/profiles'}>
                 <Botao
                     icone='chevron-right'
                     labelStyle={styles.buttonLabel}
                     contentStyle={styles.button}
                     texto={'Vamos lá'}
-                />
+                /></Link>
             </View>
         </View>
     )

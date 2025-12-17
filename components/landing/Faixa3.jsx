@@ -1,15 +1,16 @@
 import { Image, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Faixa1({ params }) {
+export default function Faixa3() {
     return (
         <View style={styles.container}>
             <View style={styles.textView}>
-                <Text variant='displayLarge' style={styles.titulo}>Aproveite na TV</Text>
-                <Text variant="headlineSmall" style={styles.mensagem}>Assista em Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, aparelhos de Blu-ray e outros dispositivos.</Text>
+                <Text variant='displayLarge' style={styles.titulo}>Crie perfis para crianças</Text>
+                <Text variant="headlineSmall" style={styles.mensagem}>
+                Deixe as crianças se aventurarem com seus personagens favoritos em um espaço feito só pra eles, sem pagar mais por isso.</Text>
             </View>
             <View style={styles.imgView}>
-                <Image style={styles.imagem} source={require('../../assets/faixa1tv.png')}></Image>
+                <Image resizeMode="contain" style={styles.imagem} source={require('../../assets/faixa3.png')}></Image>
             </View>
         </View>
     )
@@ -17,20 +18,16 @@ export default function Faixa1({ params }) {
 
 const styles = StyleSheet.create({
     container: {
-
         flex: 1,
         flexDirection: 'row',
         backgroundColor: 'black',
         justifyContent:'center',
         alignItems:'center',
-        paddingVertical:140,
-        
+        paddingVertical:100,       
     },
     textView: {
         alignItems:'flex-end',
         justifyContent:'center',
-        
-        
         flex: 0.5
     },
     imgView: {
@@ -39,19 +36,20 @@ const styles = StyleSheet.create({
     },
     imagem:{
         userSelect:'none',
-        resizeMode:'contain',
         width:'80%',
     },
     titulo:{
         width:'80%',
         fontWeight:"bold",
-        textAlign:"justify",
+        textAlign:"left",
         userSelect:"none",
-        marginBottom:15
+        marginBottom:15,
+        color:"#e9e6e6ff"
     },
     mensagem:{
         width:'80%',
         textAlign:"justify",
-        userSelect:"none"
+        userSelect:"none",
+        color:"#e9e6e6ff"
     }
 })

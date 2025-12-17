@@ -2,8 +2,8 @@ import { View, ImageBackground, Text, useWindowDimensions, Image, StyleSheet } f
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 import { useState, useEffect } from 'react';
-import CriarAssinatura from '../landing/CriarAssinatura'
-import Botao from "../landing/Button";
+import CriarAssinatura from './CriarAssinatura'
+import Botao from "./Button";
 
 
 export default function Faixa0({}) {
@@ -26,7 +26,7 @@ export default function Faixa0({}) {
                     <View style={styles.header}>
                         <View style={styles.netflix}>
                             <Image
-                            style={{tintColor:'#e50914'}}
+                            tintColor={'#e50914'}
                             source={netflix}/>
                         </View>
                             <View style={styles.direita}>
